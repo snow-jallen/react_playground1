@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-function AddChild({childUpdated}) {
+const AddChild = ({childUpdated}) => {
 
   const [enteredData, setEnteredData] = useState({
     name: 'New Child Name',
@@ -8,12 +8,8 @@ function AddChild({childUpdated}) {
     gender: 'F'
   });
   
-  const nameChangeHandler = (event) => {
-    setEnteredData((prevState) => {
-      return {...prevState, name: event.target.value};
-    });
-  }
-  const birthdateChangeHandler = (event) => setEnteredData((prevState) => ({...prevState, birthdate: event.target.value}));
+  const nameChangeHandler = (event) => setEnteredData((prevState) => ({...prevState, name: event.target.value}));
+  const birthdateChangeHandler = (event) => setEnteredData((prevState) => ({...prevState, birthdate: Date.parse(event.target.value)}));
   const genderChangeHandler = (event) => setEnteredData(prevState => ({...prevState, gender: event.target.value}));
 
   const submitHandler = (event) => {

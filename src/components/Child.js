@@ -1,11 +1,11 @@
 const Child = ({ child }) => {
     return (
-        <div className="card">
-            <div className="card-body">
-                <h2 className="card-title">{child.name}</h2>
-                <div className="card-text">
-                    <div>{child.dob.toLocaleString('en-US')}</div>
-                    <div>{child.gender}</div>
+        <div className="col-sm-6 col-md-4 col-lg-3 col-xl-2 mt-4">
+            <div className="card h-100" >
+                <div className="card-body">
+                    <h5 className="card-title">{child.name}</h5>
+                    <div className="card-text">{child.birthdate.toLocaleString('en-US', { dateStyle: 'medium' })}</div>
+                    <div className="card-text">{child.gender}</div>
                 </div>
             </div>
         </div>
