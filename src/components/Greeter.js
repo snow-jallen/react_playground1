@@ -1,7 +1,7 @@
 import React from 'react'
-const Greeter = () => {
+const Greeter = ({text}) => {
     return (
-        <h1>Hello</h1>
+        <h1>{text ?? "Default Greeter Value"}</h1>
     );
 }
 

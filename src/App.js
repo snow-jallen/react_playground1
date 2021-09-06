@@ -4,11 +4,10 @@ import {Greeter} from './components/Greeter'
 import {Family} from './components/Family'
 import {children} from './children'
 
-
 function App() {
   return (
     <div className="App">
-        <Greeter />
+      <Greeter text="Child Manager 2000" />
       <Family children={children} />
     </div>
   );

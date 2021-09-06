@@ -10,7 +10,7 @@ const ChildFilter = ({filterChanged, initialFilterValue}) => {
 
     return (
     <div>
-        Filter: <input type='text' onChange={changeHandler} value={filterValue} />
+        Filter Name: <input type='text' onChange={changeHandler} value={filterValue} />
     </div>);
 }
 
