@@ -29,11 +29,9 @@ const Family = ({ children }) => {
 
     return (
         <div>
-            <ChildFilter filterChanged={filterChangedHandler} initialFilterValue={filterText} />
-
-            <ChildList children={filteredChildren} />
-
             <AddChild childUpdated={childUpdatedHandler} />
+            <ChildFilter filterChanged={filterChangedHandler} initialFilterValue={filterText} />
+            <ChildList children={filteredChildren} />
         </div>
     );
 }

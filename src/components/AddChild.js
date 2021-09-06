@@ -2,6 +2,8 @@ import React, { useState } from "react";
 
 const AddChild = ({ childUpdated }) => {
 
+  const [showForm, setShowForm] = useState(false)
+
   const [enteredData, setEnteredData] = useState({
     name: 'New Child Name',
     birthdate: '2021-01-01',
@@ -20,10 +22,21 @@ const AddChild = ({ childUpdated }) => {
       birthdate: '2021-01-01',
       gender: 'M'
     })
+    setShowForm(false);
+  }
+
+  const showForm_clickHandled = (event) => {
+    setShowForm((prevState) => !prevState)
+  }
+
+  const hideForm_clickHandled = () => setShowForm(false);
+
+  if (showForm === false) {
+    return <button onClick={showForm_clickHandled} className="btn mb-2 btn-primary">Add Child</button>
   }
 
   return (
-    <form className="border border-3 mt-5 container col-3" onSubmit={submitHandler}>
+    <form className="border border-3 container col-6" onSubmit={submitHandler}>
       <h5 className="">Add a new child</h5>
       <div className="mb-3">
         <label className="form-label" htmlFor='name'>Name</label>
@@ -37,7 +50,12 @@ const AddChild = ({ childUpdated }) => {
         <label className="form-label" htmlFor='gender'>Gender</label>
         <input className="form-control" id='gender' type='text' onChange={genderChangeHandler} value={enteredData.gender} />
       </div>
-      <button className="btn btn-primary" type='submit'>Add New Child</button>
+      <div className="mb-3">
+        <div className="row gap-2">
+          <button className="col-4 btn btn-outline-secondary" type='reset' onClick={hideForm_clickHandled}>Cancel</button>
+          <button className="col-4 btn btn-primary" type='submit'>Add New Child</button>
+        </div>
+      </div>
     </form>);
 }
 
