@@ -11,27 +11,40 @@ const Family = ({ children }) => {
     const childUpdatedHandler = (newChild) => {
         console.log('Adding new child')
         console.log(newChild);
-        setSavedChildren((currentChildren) => [...currentChildren, newChild])
-        filterChangedHandler(filterText);
+
+        setSavedChildren((currentChildren) => {
+            const saved = [...currentChildren, newChild]
+            filterChangedHandler(filterText, saved)
+            return saved
+        })
+        //can't filter here because setSavedChildren may not have run yet.
     }
 
-    const filterChangedHandler = (newFilterText) => {
+    const filterChangedHandler = (newFilterText, children = savedChildren) => {
         console.log(`User trying to set filter to ${newFilterText}`)
         setFilterText(newFilterText);
         if (newFilterText.length === 0) {
-            setFilteredChildren(savedChildren)
+            setFilteredChildren(children)
         } else {
-            setFilteredChildren(savedChildren.filter(c => 
+            setFilteredChildren(children.filter(c => 
                 c.name.toLocaleLowerCase().indexOf(newFilterText.toLocaleLowerCase()) !== -1)
             )
         }
+    }
+
+    const removeChild = (childToRemove) => {
+        setSavedChildren((currentChildren) => {
+            const children = currentChildren.filter(c => c.id !== childToRemove.id)
+            filterChangedHandler(filterText, children)
+            return children
+        })
     }
 
     return (
         <div>
             <AddChild childUpdated={childUpdatedHandler} />
             <ChildFilter filterChanged={filterChangedHandler} initialFilterValue={filterText} />
-            <ChildList children={filteredChildren} />
+            <ChildList children={filteredChildren} removeChild={removeChild} />
         </div>
     );
 }

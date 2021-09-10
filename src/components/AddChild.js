@@ -7,7 +7,8 @@ const AddChild = ({ childUpdated }) => {
   const [enteredData, setEnteredData] = useState({
     name: 'New Child Name',
     birthdate: '2021-01-01',
-    gender: 'F'
+    gender: 'F',
+    id: Date.now()
   });
 
   const nameChangeHandler = (event) => setEnteredData((prevState) => ({ ...prevState, name: event.target.value }));
@@ -20,7 +21,8 @@ const AddChild = ({ childUpdated }) => {
     setEnteredData({
       name: '[added]',
       birthdate: '2021-01-01',
-      gender: 'M'
+      gender: 'M',
+      id: Date.now()
     })
     setShowForm(false);
   }
